@@ -9,7 +9,7 @@
 //	@DEPENDS
 //	@NATIVE_DEPEND | file system access
 var fs = require('fs');
-//	@MODULE_DEPEND | MomentJs for formating date written to build config
+//	@DEPEND_NPM_MOD | MomentJs for formating date written to build config
 var moment = require('moment');
 //	@MODULE
 //	@OBJECT buildnum

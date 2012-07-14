@@ -11,7 +11,7 @@
 //
 //
 //  @DEPENDS
-//  @DEPEND_MODULE optimist | used for access to command line parameters
+//  @DEPEND_NPM_MOD optimist | used for access to command line parameters
 var optimist = require('optimist'),
   argv = optimist.argv;
 

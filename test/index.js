@@ -20,14 +20,14 @@ var unitsuite = {
 		options = (options || {
 			tests: 'all'
 		});
-		return reporter.run(['test/serverside/top_level_access.js']);
+		return reporter.run(['test/serverside/index.js']);
 	},
 	clientside: function(options, callback) {
 		//	return vars
 		var err, result;
 		//	options or default
 		options = (options || {
-			mode: debug,
+			mode: 'debug',
 			publish: false
 		});
 		callback(err, result);
