@@ -1,27 +1,37 @@
 {
   "name": "piccanin",
-  "version": "0.0.0",
-  "description": "Nodejs, Express, MongoDb, Hook.io, libGL powered advertising distribution and tracking engine",
-  "main": "index.js",
-  "scripts": {
-    "test": "make test"
+  "description": "High performance distributed content delivery service and tracking interface",
+  "version": "0.1.1",
+  "homepage": "https://github.com/ryan/piccanin",
+  "author": {
+    "name": "Ryan Dick",
+    "email": "noxinoobin@gmail.com",
+    "url": "http://drstrangely.com"
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@bitbucket.org/ryandick/piccanin.git"
+    "url": "git://bitbucket.org/ryandick/piccanin.git"
   },
-  "keywords": [
-    "PPC",
-    "Media",
-    "Distribution",
-    "Photo",
-    "Server",
-    "Tracker"
+  "bugs": {
+    "url": "https://bitbucket.org/ryandick/piccanin/issues"
+  },
+  "licenses": [
+    {
+      "type": "Commercial ",
+      "url": "https://bitbucket.org/ryandick/piccanin/blob/master/LICENSE"
+    }
   ],
-  "author": "Ryan Dick",
-  "license": "Semi-Commercial",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test-serverside": "grunt test",
+    "test-clientside": "make test"
+  },
+  "keywords": [],
   "dependencies": {
-    "express": "3.x.x",
+    "express": "3.0.x",
     "mongoose": "2.7.x",
     "hook.io": "0.8.x"
   }
