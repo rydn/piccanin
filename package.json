@@ -19,5 +19,10 @@
     "Tracker"
   ],
   "author": "Ryan Dick",
-  "license": "BSD"
+  "license": "Semi-Commercial",
+  "dependencies": {
+    "express": "3.x.x",
+    "mongoose": "2.7.x",
+    "hook.io": "0.8.x"
+  }
 }
