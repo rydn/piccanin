@@ -14,7 +14,8 @@
 //  @DEPENDS
 //  @DEPEND_MODULE config-loader | loads configuration from file, commandline and enviromentals
 var configloader = require('./logic/global/configloader.js');
-
+//
+//
 //	@STATIC defaults
 //	@DESC defualt configuration parameters
 var defaults = {
@@ -33,9 +34,27 @@ var globalConfigFile = __dirname + '/config/global.json';
 //	@CALLBACK returnState | a object describing the application at startup
 //	@RETURNS NULL, false on error
 var piccanin = {
-	//	@IMPORT config
-	//	@DESC Import Configuration
-	//	@RETURNS global configuration values
-	//	@TYPE var_import
-	config: configloader(defaults, globalConfigFile, "ARGV", "ENV")
+	//	@SUB_OBJECT config
+	//	@IMPORT config values[numerouse]
+	//	@DESC Import Configuration Data From JSON, ARGV and ENV
+	//	@RETURNS global configuration values from multiple sources
+	config: configloader(defaults, globalConfigFile, "ARGV", "ENV"),
+	//	@SUB_OBJECT	build
+	//	@IMPORT number buildDate
+	//	@DESC Import Build Number From JSON file
+	//	@RETURNS build number object
+	build: {
+		number: require('./logic/global/buildnum.js').get().build,
+		buildDate: require('./logic/global/buildnum.js').get().builtOn
+	},
+	//	@SUB_OBJECT	func
+	//	@DESC exposes all underlying logic for access in unit tests
+	//	and to enable extensions and code level api access without exposing internal workings
+	func: {
+		//	@SUB_OBJECT_ITEM build number utility
+		build: require('./logic/global/buildnum.js'),
+		//	@SUB_OBJECT_ITEM build number utility
+		config: configloader
+	}
 };
+module.exports = piccanin;

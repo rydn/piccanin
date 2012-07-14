@@ -17,4 +17,7 @@ clean:
 	@mkdir ${DEBUG_DIR}
 	@mkdir ${RELEASE_DIR}
 	@echo "done!"
+test-serverside:
+	@node ${BASE_DIR}/test/index.js serverside
+test: test-serverside
 .PHONY: build

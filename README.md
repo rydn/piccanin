@@ -11,7 +11,12 @@ piccanin.begin();
 ```
 
 ## Documentation
-_(Coming soon)_
+### Overview
+#### Introduction
+#### Messaging
+Piccanin uses Hook.io for interprocess/node/cluster communications, messages are published to a common bus under the namespace piccanin and the intended endpoint followed by an optional priority weight and options. Message ID's look like this piccanin::logger [message] [weight] []
+
+By default the message bus runs in memory with a tcp interface as fallback running on: tcp://127.0.0.1:7878
 
 ## Examples
 _(Coming soon)_
