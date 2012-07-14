@@ -1,6 +1,6 @@
 # piccanin
 
-Nodejs and MongoDb enable a content distributer and tracked for use in PPC
+content distributer and tracked for use in PPC
 
 ## Getting Started
 Install the module with: `make init`

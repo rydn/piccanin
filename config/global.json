@@ -1,0 +1,27 @@
+{
+	"app":{
+		"name":"piccanin",
+		"url": "http://localhost:8989"
+	},
+	"interfaces":{
+		"http":{
+			"host":"localhost",
+			"port":8989,
+			"bind_addr":"127.0.0.1"
+		}
+	},
+	"bus":{
+		"_bind":"127.0.0.1",
+		"_port":7878,
+		"http":{
+			"port":6000,
+			"bind":"127.0.0.1",
+			"interface":"tcp://127.0.0.1:6000"
+		},
+		"logger":{
+			"port":6001,
+			"bind":"127.0.0.1",
+			"interface":"tcp://127.0.0.1:6001"
+		}
+	}
+}
