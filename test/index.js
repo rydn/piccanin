@@ -12,26 +12,26 @@ var argv = require('optimist').usage('Usage: $0 <test suite, frontside or server
 //	@OBJECT unitsuite
 //	@DESC wrapper object for handling individual test suites
 var unitsuite = {
-	serverside: function(options) {
-		//	@MODULE_DEPENDENCY nodeunit_reporter
-		//	@DESC test runner for nodeunit
-		var reporter = require('nodeunit').reporters['default'];
-		//	options or default
-		options = (options || {
-			tests: 'all'
-		});
-		return reporter.run(['test/serverside/index.js']);
-	},
-	clientside: function(options, callback) {
-		//	return vars
-		var err, result;
-		//	options or default
-		options = (options || {
-			mode: 'debug',
-			publish: false
-		});
-		callback(err, result);
-	}
+    serverside:function (options) {
+        //	@MODULE_DEPENDENCY nodeunit_reporter
+        //	@DESC test runner for nodeunit
+        var reporter = require('nodeunit').reporters['default'];
+        //	options or default
+        options = (options || {
+            tests:'all'
+        });
+        return reporter.run(['test/serverside/index.js']);
+    },
+    clientside:function (options, callback) {
+        //	return vars
+        var err, result;
+        //	options or default
+        options = (options || {
+            mode:'debug',
+            publish:false
+        });
+        callback(err, result);
+    }
 };
 //	@SECTION cli logic
 //	@DESC makes actions based on passed parameters
@@ -43,15 +43,15 @@ var testAction = (argv._[0]) || 'serverside';
 console.log('---> RIX Fabric Test Runner');
 //	main switch
 switch (testAction.toLowerCase()) {
-case 'serverside':
-	console.log('---> serverside tests about to begin...');
-	unitsuite.serverside(argv);
-	break;
-case 'clientside':
-	console.log('---> clientside tests about to begin...');
-	//TODO
-	break;
-default:
-	unitsuite.serverside(argv);
-	break;
+    case 'serverside':
+        console.log('---> serverside tests about to begin...');
+        unitsuite.serverside(argv);
+        break;
+    case 'clientside':
+        console.log('---> clientside tests about to begin...');
+        //TODO
+        break;
+    default:
+        unitsuite.serverside(argv);
+        break;
 }

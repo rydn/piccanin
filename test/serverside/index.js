@@ -14,22 +14,22 @@
 var piccanin = require('../../index.js');
 
 /*
-  ======== A Handy Little Nodeunit Reference ========
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+ ======== A Handy Little Nodeunit Reference ========
+ Test methods:
+ test.expect(numAssertions)
+ test.done()
+ Test assertions:
+ test.ok(value, [message])
+ test.equal(actual, expected, [message])
+ test.notEqual(actual, expected, [message])
+ test.deepEqual(actual, expected, [message])
+ test.notDeepEqual(actual, expected, [message])
+ test.strictEqual(actual, expected, [message])
+ test.notStrictEqual(actual, expected, [message])
+ test.throws(block, [error], [message])
+ test.doesNotThrow(block, [error], [message])
+ test.ifError(value)
+ */
 //
 //  @TEST_SUITE namespace.configSuite
 //  @DESC Test ability to load configuration from json file
@@ -82,9 +82,7 @@ var busControl = require('../../logic/bus/index.js');
 //  @DESC Multi-Test Suite for message queue and messaging services
 var bus_getHooker = {
     setUp: function(done) {
-        busControl.op.init(function(err, result){
-            done();
-        });
+        done();
     },
     'no args': function(test) {
         test.expect(3);
@@ -102,6 +100,8 @@ var bus_getHooker = {
 
     }
 };
+//
+//  @TEST_SUITE
 //  top level access tests
 exports['Top Level Access | Configuration init, values from file and commandline'] = configSuite;
 exports['Top Level Access | Increment build number, read build number from file'] = buildnumSuite;

@@ -1,27 +1,27 @@
 {
-	"app": {
-		"name": "piccanin",
-		"url": "http://localhost:8989"
-	},
-	"interfaces": {
-		"http": {
-			"host": "localhost",
-			"port": 8989,
-			"bind_addr": "127.0.0.1"
-		}
-	},
-	"bus": {
-		"bind": "127.0.0.1",
-		"port": 7878,
-		"namespace": "piccanin",
-		"http": {
-			"namespace": "http"
-		},
-		"logger": {
-			"namespace": "log"
-		}
-	},
-	"log":{
-"levelHi":4		
-	}
+    "app":{
+        "name":"piccanin",
+        "url":"http://localhost:8989"
+    },
+    "interfaces":{
+        "http":{
+            "host":"localhost",
+            "port":8989,
+            "bind_addr":"127.0.0.1"
+        }
+    },
+    "bus":{
+        "bind":"127.0.0.1",
+        "port":7878,
+        "namespace":"piccanin",
+        "http":{
+            "namespace":"http"
+        },
+        "logger":{
+            "namespace":"log"
+        }
+    },
+    "log":{
+        "levelHi":4
+    }
 }
