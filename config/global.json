@@ -20,5 +20,8 @@
 		"logger": {
 			"namespace": "log"
 		}
+	},
+	"log":{
+"levelHi":4		
 	}
 }

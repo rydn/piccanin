@@ -76,12 +76,15 @@ var buildnumSuite = {
     }
 };
 //
+var busControl = require('../../logic/bus/index.js');
 //
 //  @TEST_SUITE namespace.bus.getHooker
 //  @DESC Multi-Test Suite for message queue and messaging services
 var bus_getHooker = {
     setUp: function(done) {
-        done();
+        busControl.op.init(function(err, result){
+            done();
+        });
     },
     'no args': function(test) {
         test.expect(3);
@@ -90,7 +93,6 @@ var bus_getHooker = {
         //  @TEST_UNIT_SECTION create new bus
         //  @TEST attempt to create a new hooker
         //  @EXPECT to be a number larger than 0/null/false/etc
-        var busControl = require('../../logic/bus/index.js');
         busControl.getHooker('test-suite', function(err, result) {
             test.notEqual(err, true, 'hooker did throw err when getting got');
             test.equal(result.ready, true, 'hooker was not returned');

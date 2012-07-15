@@ -5,6 +5,7 @@
 //  Or in any way modified without the express consent of the original author
 //  Most rights reserved
 //
+//
 //  @DEPENDS
 //	@DEPEND_NPM_MOD | MomentJs for formating date written to build config
 var moment = require('moment');
@@ -14,6 +15,8 @@ var _hook = require('hook.io');
 var piccanin = require('../../index.js');
 //
 //
+var busHook = {};
+
 //	@MODULE_HEADER logic/bus/index.js
 //	@DESC this file is used to provide a interface to the underlying logic in folders and files bellow it
 //	The bus module provides a application wide access the applications messaging bus
@@ -21,14 +24,14 @@ var piccanin = require('../../index.js');
 //	in this module a message queing system is also implemented to allow for a transparent multilevel queue system
 //	This module does not run as a service but rather supplies all the functionality for others to
 var messageBus = {
-	//	@SUB_OBJECT busOp
+	//	@SUB_OBJECT op
 	//	@DESC object container for all operations pertaining to message transmision and signaling
 	//	at its core it provides hooks for application messages such as logging, metrics and data access
 	//	it does not provide the logic for these steps but rather provides interfaces and routing to exposed handlers
-	busOp: {
-		//	@FUNCTION messagebus.busOp.init
+	op: {
+		//	@FUNCTION messagebus.op.init
 		//	@DESC initialise the opperator and callback with control object
-		//	creates a busop hooker that is used to monitor messaging and emit hooker control messages to the syslog hooker
+		//	creates a op hooker that is used to monitor messaging and emit hooker control messages to the syslog hooker
 		//	@CALLBACK error and/or hook object
 		init: function(options, callback) {
 			//	test if is function(callback passed instead of options)
@@ -38,7 +41,7 @@ var messageBus = {
 				options = null;
 			}
 			options = (options) || {
-				name: 'busOp',
+				name: 'op',
 				debug: true,
 				eventLog: true,
 				loglevel: 'debug'
@@ -47,7 +50,7 @@ var messageBus = {
 			var retObj = {};
 			//	create hooker object
 			var busop_hook = _hook.createHook({
-				name: 'busop',
+				name: 'op',
 				debug: options.debug
 			});
 			//	attempt to search for a open port
@@ -66,7 +69,7 @@ var messageBus = {
 			});
 			//	@SECTION hook event handlers
 			//	@DESC binds to hook events, and collects metrics and logs events
-			//	some events are rerouted to the busop like when a hook connects or disconnects
+			//	some events are rerouted to the op like when a hook connects or disconnects
 			//	most of these hooks are for the purpose of keeping a record of hook state
 			//
 			//
@@ -92,15 +95,20 @@ var messageBus = {
 			busop_hook.on('hook::error', function() {
 				//syslog emitt
 				console.log('busop_hook is dead, this is CRITICAL');
+				proccess.die();
 			});
 		}
 	},
+	//	@NAMESPACE <namespace>.bus.log.<command>
+	//	@PUBLIC_INTERFACE log writter access
+	//	@DESC accept various logger levels, they add modifiers in options then pass to proxy
+	log: require('../logger/index.js'),
 	//
 	//
 	//	@FUCTION getHooker
 	//	@DESC creates a new hooker with options, takes not of it and returns the hooker in callback
 	//	@CALLBACK Error, RiX-Fabric Hooker
-	getHooker: function(name, options, callback) {
+	getHooker: function(name, options, callback){
 		//	will contain the information we will use in the callback
 		var retObj = {};
 		//	if no name callback with error
@@ -152,7 +160,7 @@ var messageBus = {
 		});
 		//	@SECTION hook event handlers
 		//	@DESC binds to hook events, and collects metrics and logs events
-		//	some events are rerouted to the busop like when a hook connects or disconnects
+		//	some events are rerouted to the op like when a hook connects or disconnects
 		//	most of these hooks are for the purpose of keeping a record of hook state
 		//
 		//

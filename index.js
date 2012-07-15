@@ -55,17 +55,31 @@ var piccanin = {
 		build: require('./logic/global/buildnum.js'),
 		//	@SUB_OBJECT_ITEM build number utility
 		config: configloader,
+
 		//	@SUB_OBJECT_ITEM misc utilities and tools
 		//	@OBJECT_CHILDREN [guid]
-		util: require('./logic/global/util.js')
-	},
-	//	@SUB_OBJECT cache
-	//	@DESC a application wide store for hashes, active objects and any other persisted states
-	cache:{
-		//	@SUB_OBJECT_ITEM hooks
-		//	@DESC container used for storing all available hooker referances
-		//	@CACHE_TYPE hook.io hook objects
-		hooks: []
+		util: require('./logic/global/util.js') || {
+			uuid: function() {
+				return Math.random(200) * 50 / 10;
+			}
+		},
+		bus: require('./logic/bus/index.js'),
+		//	@SUB_OBJECT cache
+		//	@DESC a application wide store for hashes, active objects and any other persisted states
+		cache: {
+			//	@SUB_OBJECT_ITEM hooks
+			//	@DESC container used for storing all available hooker referances
+			//	@CACHE_TYPE hook.io hook objects
+			hooks: []
+		},
+		log: {
+			verbose: function(message) {},
+			info: function(message) {},
+			debug: function(message) {},
+			warn: function(message) {},
+			doom: function(message) {},
+			inspect: function(objToInspect) {}
+		}
 	}
 };
 module.exports = piccanin;
